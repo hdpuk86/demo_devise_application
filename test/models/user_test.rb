@@ -1,7 +1,10 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def test_can_create_user
+    assert User.new(
+      email: 'test@example.com',
+      display_name: 'name'
+    )
+  end
 end
