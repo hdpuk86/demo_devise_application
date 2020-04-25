@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  devise_for :users
-  resources :users, only: [:index, :show, :edit, :update]
-  root to: 'users#index'
+  devise_for :users, path_prefix: 'auth' # prefix prevents clashing routes with user controller
+
+  devise_scope :user do # custom routes to allow get requests
+    get 'sign_in', to: 'devise/sessions#new'
+    get 'sign_out', to: 'devise/sessions#destroy'
+  end
+
+  resources :users, only: [:index, :show, :edit, :update] # must come after devise_for
+  root to: 'users#index' # must have a root
 end
