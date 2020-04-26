@@ -11,5 +11,5 @@ class ActiveSupport::TestCase
 end
 
 class ActionDispatch::IntegrationTest
-  include Devise::Test::IntegrationHelpers
+  include Devise::Test::IntegrationHelpers # NOTE add devise helpers to all integration tests to allow sign_in/sign_out
 end
