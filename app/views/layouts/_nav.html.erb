@@ -5,17 +5,18 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <%- if signed_in? %>
   <div class="collapse navbar-collapse" id="navbarNav">
     <div class="navbar-nav">
-      <%= link_to 'Sign out', destroy_user_session_path, class: 'nav-item nav-link' %>
-      <%= link_to 'Sign in', new_user_session_path, class: 'nav-item nav-link' %>
-      <%= link_to 'New password', new_user_password_path, class: 'nav-item nav-link' %>
-      <%= link_to 'Update password', edit_user_password_path, class: 'nav-item nav-link' %>
-      <%= link_to 'Cancel registration', cancel_user_registration_path, class: 'nav-item nav-link' %>
-      <%= link_to 'Edit registration', edit_user_registration_path, class: 'nav-item nav-link' %>
-      <%= link_to 'Sign up', new_user_registration_path, class: 'nav-item nav-link' %>
+      <% if !signed_in? %>
+        <%= link_to 'Log in', new_user_session_path, class: 'nav-item nav-link' %>
+        <%= link_to 'Sign up', new_user_registration_path, class: 'nav-item nav-link' %>
+      <% end %>
+
+      <% if signed_in? %>
+        <%= link_to 'Update password', edit_user_password_path, class: 'nav-item nav-link' %>
+        <%= link_to 'Edit registration', edit_user_registration_path, class: 'nav-item nav-link' %>
+        <%= link_to 'Log out', destroy_user_session_path, class: 'nav-item nav-link' %>
+      <% end %>
     </div>
   </div>
-  <% end %>
 </nav>
